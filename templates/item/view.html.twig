@@ -16,6 +16,8 @@
             <dd>{{  item.description }}</dd>
             <dt>{{ 'label.created_at'|trans }}</dt>
             <dd>{{ item.createdAt|date('Y/m/d') }}</dd>
+            <dt>{{ 'label.category'|trans }}</dt>
+            <dd>{{  item.category.title }}</dd>
         </dl>
         <p>
             <a href="{{ url('item_index') }}" title="{{ 'action.back_to_list'|trans }}">

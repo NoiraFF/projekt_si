@@ -19,6 +19,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'item.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'item.description') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'item.createdAt') }}</th>
+                <th>{{ 'label.category'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -29,6 +30,7 @@
                     <td>{{ item.title }}</td>
                     <td>{{ item.description }}</td>
                     <td>{{ item.createdAt|date('Y/m/d') }}</td>
+                    <td>{{ item.category.title }}</td>
                     <td>
                         <a href="{{ url('item_view', {id: item.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
