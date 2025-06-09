@@ -45,7 +45,12 @@ class ItemRepository extends ServiceEntityRepository
      */
     public function queryAll(): QueryBuilder
     {
-        return $this->createQueryBuilder('item');
+        return $this->createQueryBuilder('item')
+            ->select(
+                'partial item.{id, createdAt, description, title}',
+                'partial category.{id, title}'
+            )
+            ->join('item.category', 'category');
     }
 
     //    /**

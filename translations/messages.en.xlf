@@ -14,6 +14,10 @@
         <source>label.title</source>
         <target>Title</target>
       </trans-unit>
+      <trans-unit id="label.description">
+        <source>label.description</source>
+        <target>Description</target>
+      </trans-unit>
       <trans-unit id="label.content">
         <source>label.content</source>
         <target>Content</target>
