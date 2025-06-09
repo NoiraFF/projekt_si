@@ -6,8 +6,8 @@
 namespace App\Controller;
 
 use App\Entity\Item;
-use App\Repository\ItemRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\ItemService;
+use App\Service\ItemServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
@@ -20,11 +20,15 @@ use Symfony\Component\Routing\Attribute\Route;
 class ItemController extends AbstractController
 {
     /**
+     * Constructor.
+     */
+    public function __construct(private readonly ItemServiceInterface $itemService)
+    {
+    }
+
+    /**
      * Index action.
-     *
-     * @param ItemRepository     $itemRepository Item repository
-     * @param PaginatorInterface $paginator      Paginator
-     * @param int                $page           Default page number
+     * @param int $page Default page number
      *
      * @return Response HTTP response
      */
@@ -32,18 +36,9 @@ class ItemController extends AbstractController
         name: 'item_index',
         methods: 'GET'
     )]
-    public function index(ItemRepository $itemRepository, PaginatorInterface $paginator, #[MapQueryParameter] int $page = 1): Response
+    public function index(#[MapQueryParameter] int $page = 1): Response
     {
-        $pagination = $paginator->paginate(
-            $itemRepository->queryAll(),
-            $page,
-            ItemRepository::PAGINATOR_ITEMS_PER_PAGE,
-            [
-                'sortFieldAllowList' => ['item.id', 'item.title', 'item.description', 'item.createdAt'],
-                'defaultSortFieldName' => 'item.createdAt',
-                'defaultSortDirection' => 'desc',
-            ]
-        );
+        $pagination = $this->itemService->getPaginatedList($page);
 
         return $this->render('item/index.html.twig', ['pagination' => $pagination]);
     }
