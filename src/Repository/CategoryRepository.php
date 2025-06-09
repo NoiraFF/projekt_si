@@ -19,17 +19,6 @@ use Doctrine\Persistence\ManagerRegistry;
 class CategoryRepository extends ServiceEntityRepository
 {
     /**
-     * Category per page.
-     *
-     * Use constants to define configuration options that rarely change instead
-     * of specifying them in configuration files.
-     * See https://symfony.com/doc/current/best_practices.html#configuration
-     *
-     * @constant int
-     */
-    public const PAGINATOR_CATEGORY_PER_PAGE = 5;
-
-    /**
      * Constructor.
      *
      * @param ManagerRegistry $registry Manager registry
@@ -47,6 +36,28 @@ class CategoryRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->createQueryBuilder('category');
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Category $category Category entity
+     */
+    public function save(Category $category): void
+    {
+        $this->getEntityManager()->persist($category);
+        $this->getEntityManager()->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Category $category Category entity
+     */
+    public function delete(Category $category): void
+    {
+        $this->getEntityManager()->remove($category);
+        $this->getEntityManager()->flush();
     }
 
     //    /**

@@ -6,7 +6,6 @@
 namespace App\Controller;
 
 use App\Entity\Item;
-use App\Service\ItemService;
 use App\Service\ItemServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
