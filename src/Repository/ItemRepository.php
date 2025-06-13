@@ -6,6 +6,7 @@
 namespace App\Repository;
 
 use App\Entity\Item;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -51,6 +52,27 @@ class ItemRepository extends ServiceEntityRepository
                 'partial category.{id, title}'
             )
             ->join('item.category', 'category');
+    }
+
+    /**
+     * Count items by category.
+     *
+     * @param Category $category Category
+     *
+     * @return int Number of items in category
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByCategory(Category $category): int
+    {
+        $qb = $this->CreateQueryBuilder('item');
+
+        return $qb->select($qb->expr()->countDistinct('item.id'))
+            ->where('item.category = :category')
+            ->setParameter('category', $category)
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 
     //    /**
