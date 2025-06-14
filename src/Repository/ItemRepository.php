@@ -3,10 +3,11 @@
 /**
  * Item repository.
  */
+
 namespace App\Repository;
 
-use App\Entity\Item;
 use App\Entity\Category;
+use App\Entity\Item;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,17 +19,6 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ItemRepository extends ServiceEntityRepository
 {
-    /**
-     * Items per page.
-     *
-     * Use constants to define configuration options that rarely change instead
-     * of specifying them in configuration files.
-     * See https://symfony.com/doc/current/best_practices.html#configuration
-     *
-     * @constant int
-     */
-    public const PAGINATOR_ITEMS_PER_PAGE = 5;
-
     /**
      * Constructor.
      *
@@ -60,9 +50,6 @@ class ItemRepository extends ServiceEntityRepository
      * @param Category $category Category
      *
      * @return int Number of items in category
-     *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
      */
     public function countByCategory(Category $category): int
     {
@@ -70,9 +57,31 @@ class ItemRepository extends ServiceEntityRepository
 
         return $qb->select($qb->expr()->countDistinct('item.id'))
             ->where('item.category = :category')
-            ->setParameter('category', $category)
+            ->setParameter(':category', $category)
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Item $item Item entity
+     */
+    public function save(Item $item): void
+    {
+        $this->getEntityManager()->persist($item);
+        $this->getEntityManager()->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Item $item Item entity
+     */
+    public function delete(Item $item): void
+    {
+        $this->getEntityManager()->remove($item);
+        $this->getEntityManager()->flush();
     }
 
     //    /**

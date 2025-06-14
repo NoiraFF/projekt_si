@@ -22,4 +22,18 @@ interface ItemServiceInterface
      */
     public function getPaginatedList(int $page): PaginationInterface;
 
+    /**
+     * Save entity.
+     *
+     * @parm Item $item Item entity
+     */
+    public function save(Item $item): void;
+
+    /**
+     * Delete entity.
+     *
+     * @param Item $item Item entity
+     */
+    public function delete(Item $item): void;
+
 }

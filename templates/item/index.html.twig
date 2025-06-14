@@ -29,25 +29,35 @@
                     <td>{{ item.id }}</td>
                     <td>{{ item.title }}</td>
                     <td>{{ item.description }}</td>
-                    <td>{{ item.createdAt|date('Y/m/d') }}</td>
+                    <td>{{ item.createdAt|format_date('long') }}</td>
                     <td>{{ item.category.title }}</td>
                     <td>
-                        <a href="{{ url('item_view', {id: item.id}) }}" title="{{ 'action.view'|trans }}">
-                            {{ 'action.view'|trans }}
+                        <a href="{{ url('item_view', {id: item.id}) }}" class="btn btn-primary btn-sm" title="{{ 'action.view'|trans }}">
+                            <i class="bi bi-eye"></i> {{ 'action.view'|trans }}
+                        </a>
+                        <a href="{{ url('item_edit', {id: item.id}) }}" class="btn btn-warning btn-sm" title="{{ 'action.edit'|trans }}">
+                            <i class="bi bi-pencil"></i> {{ 'action.edit'|trans }}
+                        </a>
+                        <a href="{{ url('item_delete', {id: item.id}) }}" class="btn btn-danger btn-sm" title="{{ 'action.delete'|trans }}">
+                            <i class="bi bi-trash"></i> {{ 'action.delete'|trans }}
                         </a>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
         </div>
-
+        <div class="text-end mb-3">
+            <a href="{{ path('item_create') }}" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> {{ 'action.create'|trans }}
+            </a>
+        </div>
     {% else %}
-        <p>
-            {{ 'message.empty_list'|trans }}
-        </p>
+        {% include 'default/_single_alert_message.html.twig' with {
+            type: 'warning',
+            message: 'message.empty_list'|trans
+        } %}
     {% endif %}
 {% endblock %}

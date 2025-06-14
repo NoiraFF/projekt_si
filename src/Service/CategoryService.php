@@ -14,7 +14,6 @@ use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\NonUniqueResultException;
 
-
 /**
  * Class CategoryService.
  */

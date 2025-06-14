@@ -6,6 +6,7 @@
 
 namespace App\Service;
 
+use App\Entity\Item;
 use App\Repository\ItemRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -55,5 +56,25 @@ class ItemService implements ItemServiceInterface
                 'defaultSortDirection' => 'desc',
             ]
         );
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Item $item Item entity
+     */
+    public function save(Item $item): void
+    {
+        $this->itemRepository->save($item);
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Item $item Item entity
+     */
+    public function delete(Item $item): void
+    {
+        $this->itemRepository->delete($item);
     }
 }

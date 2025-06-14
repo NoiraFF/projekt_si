@@ -7,6 +7,8 @@ namespace App\Entity;
 
 use App\Repository\ItemRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Task.
@@ -25,28 +27,56 @@ class Item
 
     /**
      * Title.
+     *
+     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 255)]
     private ?string $title = null;
 
     /**
      * Description.
+     *
+     * @var text|null
      */
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 65535)]
     private ?string $description = null;
 
     /**
      * Created At.
+     *
+     * @var \DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\Type(\DateTimeImmutable::class)]
+    #[Gedmo\Timestampable(on: 'create')]
     private ?\DateTimeImmutable $createdAt = null;
 
     /**
      * Category.
+     *
+     * @var Category|null Category
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\Type(Category::class)]
+    #[Assert\NotBlank]
     private ?Category $category = null;
+
+    /**
+     * Slug.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Type('string')]
+    #[Assert\Length(min: 3, max: 255)]
+    #[Gedmo\Slug(fields: ['title'])]
+    private ?string $slug = null;
 
     /**
      * Getter for Id.
@@ -83,7 +113,7 @@ class Item
     /**
      * Getter for description.
      *
-     * @return text|null Description
+     * @return string|null Description
      */
     public function getDescription(): ?string
     {
@@ -93,7 +123,7 @@ class Item
     /**
      * Setter for description.
      *
-     * @param text|null $title Description
+     * @param string|null $title Description
      */
     public function setDescription(string $description): static
     {
@@ -142,6 +172,28 @@ class Item
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Getter for slug.
+     *
+     * @return string|null Slug
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Setter for slug.
+     *
+     * @param string|null $title Slug
+     */
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }
