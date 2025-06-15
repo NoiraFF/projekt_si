@@ -28,7 +28,7 @@ class CategoryService implements CategoryServiceInterface
      *
      * @constant int
      */
-    private const PAGINATOR_ITEMS_PER_PAGE = 5;
+    private const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
      * Constructor.

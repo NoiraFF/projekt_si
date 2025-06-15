@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Category controller.
  */
@@ -22,11 +23,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/category')]
 class CategoryController extends AbstractController
 {
+
     /**
      * Constructor.
      *
      * @param CategoryServiceInterface $categoryService Category service
-     * @param TranslatorInterface $translator Translator
+     * @param TranslatorInterface      $translator      Translator
      */
     public function __construct(private readonly CategoryServiceInterface $categoryService, private readonly TranslatorInterface $translator)
     {
