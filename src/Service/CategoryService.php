@@ -63,6 +63,28 @@ class CategoryService implements CategoryServiceInterface
     }
 
     /**
+     * Get paginated list of items by category.
+     *
+     * @param int      $page     Page number
+     * @param Category $category Category entity
+     *
+     * @return PaginationInterface Paginated list
+     */
+    public function getPaginatedItemsByCategory(int $page, Category $category): PaginationInterface
+    {
+        return $this->paginator->paginate(
+            $this->itemRepository->queryByCategory($category),
+            $page,
+            self::PAGINATOR_ITEMS_PER_PAGE,
+            [
+                'sortFieldAllowList' => ['item.id', 'item.title', 'item.description', 'item.createdAt'],
+                'defaultSortFieldName' => 'item.createdAt',
+                'defaultSortDirection' => 'desc',
+            ]
+        );
+    }
+
+    /**
      * Save entity.
      *
      * @param Category $category Category entity

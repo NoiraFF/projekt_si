@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.item_list_for_category'|trans }}: {{ category.title }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.item_list_for_category'|trans }}: {{ category.title }}</h1>
+    {% if pagination.items|length %}
+        <div class="navigation text-center mb-3">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'item.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'item.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'item.description') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'item.createdAt') }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in pagination.items %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.createdAt|format_date('long') }}</td>
+                    <td>
+                        <a href="{{ path('item_view', {id: item.id}) }}" class="btn btn-primary btn-sm" title="{{ 'action.view'|trans }}">
+                            <i class="bi bi-eye"></i> {{ 'action.view'|trans }}
+                        </a>
+                        <a href="{{ path('item_edit', {id: item.id}) }}" class="btn btn-warning btn-sm" title="{{ 'action.edit'|trans }}">
+                            <i class="bi bi-pencil"></i> {{ 'action.edit'|trans }}
+                        </a>
+                        <a href="{{ path('item_delete', {id: item.id}) }}" class="btn btn-danger btn-sm" title="{{ 'action.delete'|trans }}">
+                            <i class="bi bi-trash"></i> {{ 'action.delete'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation text-center mt-3">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    {% else %}
+        {% include 'default/_single_alert_message.html.twig' with {
+            type: 'warning',
+            message: 'message.no_items_in_category'|trans
+        } %}
+    {% endif %}
+    <div class="mt-3">
+        <a href="{{ path('category_index') }}" class="btn btn-light" title="{{ 'action.back_to_list'|trans }}">
+            <i class="bi bi-arrow-left"></i> {{ 'action.back_to_list'|trans }}
+        </a>
+    </div>
+{% endblock %}

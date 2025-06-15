@@ -63,6 +63,21 @@ class ItemRepository extends ServiceEntityRepository
     }
 
     /**
+     * Query items by category.
+     *
+     * @param Category $category Category entity
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryByCategory(Category $category): QueryBuilder
+    {
+        return $this->createQueryBuilder('item')
+            ->where('item.category = :category')
+            ->setParameter(':category', $category)
+            ->orderBy('item.createdAt', 'DESC');
+    }
+
+    /**
      * Save entity.
      *
      * @param Item $item Item entity

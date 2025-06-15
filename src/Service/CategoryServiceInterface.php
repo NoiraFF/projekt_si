@@ -20,7 +20,6 @@ interface CategoryServiceInterface
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-
     public function getPaginatedList(int $page): PaginationInterface;
 
     /**
@@ -46,4 +45,13 @@ interface CategoryServiceInterface
      */
     public function canBeDeleted(Category $category): bool;
 
+    /**
+     * Get paginated list of items by category.
+     *
+     * @param int      $page     Page number
+     * @param Category $category Category entity
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getPaginatedItemsByCategory(int $page, Category $category): PaginationInterface;
 }

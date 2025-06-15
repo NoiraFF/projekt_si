@@ -61,7 +61,7 @@ class Item
      *
      * @var Category|null Category
      */
-    #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY', inversedBy: 'items')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\Type(Category::class)]
     #[Assert\NotBlank]

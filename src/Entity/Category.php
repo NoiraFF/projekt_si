@@ -7,6 +7,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -70,6 +72,24 @@ class Category
     #[Assert\Length(min: 3, max: 64)]
     #[Gedmo\Slug(fields: ['title'])]
     private ?string $slug;
+
+    /**
+     * Items
+     *
+     * @var Collection|ArrayCollection
+     */
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Item::class)]
+    private Collection $items;
+
+    /**
+     * Category constructor.
+     *
+     * Initializes items collection.
+     */
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
 
     /**
      * Getter for Id.
@@ -165,6 +185,47 @@ class Category
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Getter for items.
+     *
+     * @return Collection<int, Item> Collection of items
+     */
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
+    /**
+     * Add item to the collection.
+     *
+     * @param Item $item Item entity
+     */
+    public function addItem(Item $item): static
+    {
+        if (!$this->items->contains($item)) {
+            $this->items->add($item);
+            $item->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove item from the collection.
+     *
+     * @param Item $item Item entity
+     */
+    public function removeItem(Item $item): static
+    {
+        if ($this->items->removeElement($item)) {
+            if ($item->getCategory() === $this) {
+                $item->setCategory(null);
+            }
+        }
 
         return $this;
     }

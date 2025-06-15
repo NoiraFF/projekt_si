@@ -20,8 +20,8 @@
             <dd>{{  item.category.title }}</dd>
         </dl>
         <p>
-            <a href="{{ url('item_index') }}" title="{{ 'action.back_to_list'|trans }}">
-                {{ 'action.back_to_list'|trans }}
+            <a href="{{ url('item_index') }}" class="btn btn-light" title="{{ 'action.back_to_list'|trans }}">
+                <i class="bi bi-arrow-left"></i> {{ 'action.back_to_list'|trans }}
             </a>
         </p>
     {% else %}

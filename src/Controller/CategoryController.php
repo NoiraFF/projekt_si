@@ -34,6 +34,7 @@ class CategoryController extends AbstractController
 
     /**
      * Index action.
+     *
      * @param int $page Default page number
      *
      * @return Response HTTP response
@@ -170,7 +171,7 @@ class CategoryController extends AbstractController
         if (!$this->categoryService->canBeDeleted($category)) {
             $this->addFlash(
                 'warning',
-                $this->translator->trans('message.category_contains_tasks')
+                $this->translator->trans('message.category_contains_items')
             );
 
             return $this->redirectToRoute('category_index');
@@ -200,5 +201,31 @@ class CategoryController extends AbstractController
                 'category' => $category,
             ]
         );
+    }
+
+    /**
+     * View items action.
+     *
+     * @param Category $category Category entity
+     * @param int      $page     Default page number
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/{id}/items',
+        name: 'category_items',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: ['GET']
+    )]
+    public function items(Category $category, #[MapQueryParameter] int $page = 1): Response
+    {
+        $pagination = $this->categoryService->getPaginatedItemsByCategory($page, $category);
+
+        return $this->render('category/items.html.twig', [
+
+            'category' => $category,
+            'items' => $category->getItems(),
+            'pagination' => $pagination,
+        ]);
     }
 }

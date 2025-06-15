@@ -18,8 +18,13 @@
             <dd>{{ category.updatedAt|date('Y/m/d') }}</dd>
         </dl>
         <p>
-            <a href="{{ url('category_index') }}" title="{{ 'action.back_to_list'|trans }}">
-                {{ 'action.back_to_list'|trans }}
+            <a href="{{ url('category_items', {'id': category.id}) }}" class="btn btn-info btn-sm" title="{{ 'action.view_category_items'|trans }}">
+                <i class="bi bi-search"></i> {{ 'action.view_category_items'|trans }}
+            </a>
+        </p>
+        <p>
+            <a href="{{ url('category_index') }}" class="btn btn-light" title="{{ 'action.back_to_list'|trans }}">
+                <i class="bi bi-arrow-left"></i> {{ 'action.back_to_list'|trans }}
             </a>
         </p>
     {% else %}
