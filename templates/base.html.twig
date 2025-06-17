@@ -31,6 +31,18 @@
                 </li>
             </ul>
         </div>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div class="container-fluid">
+            <p class="text-end mb-2">{{ app.user.email }}</p>
+            <div class="text-end mb-3">
+                <a href="{{ url('app_logout') }}" class="btn btn-primary">{{ 'action.logout'|trans }}</a>
+            </div>
+            {% else %}
+                <div class="text-end mb-3">
+                    <a href="{{ url('app_login') }}" class="btn btn-primary">{{ 'action.login'|trans }}</a>
+                </div>
+            {% endif %}
+        </div>
     </div>
 </nav>
 <main role="main" class="container-fluid">
