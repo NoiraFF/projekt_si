@@ -1,24 +1,23 @@
 <?php
 
 /**
- * Item Type.
+ * Comment Type.
  */
 
 namespace App\Form\Type;
 
-use App\Entity\Category;
-use App\Entity\Item;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Comment;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class ItemType.
+ * Class CommentType.
  */
-class ItemType extends AbstractType
+class CommentType extends AbstractType
 {
     /**
      * Builds the form.
@@ -34,32 +33,31 @@ class ItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add(
-            'title',
-            TextType::class,
+            'email',
+            EmailType::class,
             [
-                'label' => 'label.title',
+                'label' => 'label.email',
                 'required' => true,
                 'attr' => ['max_length' => 255],
             ]
         );
         $builder->add(
-            'description',
-            TextareaType::class,
+            'nickname',
+            TextType::class,
             [
-                'label' => 'label.description',
+                'label' => 'label.nickname',
                 'required' => true,
-                'attr' => ['rows' => 6, 'max_length' => 65535],
+                'attr' => ['max_length' => 64],
             ]
+
         );
         $builder->add(
-            'category',
-            EntityType::class,
+            'content',
+            TextareaType::class,
             [
-                'class' => Category::class,
-                'choice_label' => fn (Category $category): ?string => $category->getTitle(),
-                'label' => 'label.category',
-                'placeholder' => 'label.none',
+                'label' => 'label.content',
                 'required' => true,
+                'attr' => ['rows' => 6, 'max_length' => 65535],
             ]
         );
     }
@@ -71,7 +69,7 @@ class ItemType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => Item::class]);
+        $resolver->setDefaults(['data_class' => Comment::class]);
     }
 
     /**
@@ -82,10 +80,10 @@ class ItemType extends AbstractType
      *
      * @return string The prefix of the template block name
      *
-     * @psalm-return 'item'
+     * @psalm-return 'comment'
      */
     public function getBlockPrefix(): string
     {
-        return 'item';
+        return 'comment';
     }
 }

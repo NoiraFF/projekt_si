@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Item controller.
  */
@@ -34,6 +35,7 @@ class ItemController extends AbstractController
 
     /**
      * Index action.
+     *
      * @param int $page Default page number
      *
      * @return Response HTTP response

@@ -15,7 +15,7 @@
             <dt>{{ 'label.description'|trans }}</dt>
             <dd>{{  item.description }}</dd>
             <dt>{{ 'label.created_at'|trans }}</dt>
-            <dd>{{ item.createdAt|date('Y/m/d') }}</dd>
+            <dd>{{ item.createdAt|format_date('long') }}</dd>
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{  item.category.title }}</dd>
         </dl>
@@ -24,10 +24,39 @@
                 <i class="bi bi-arrow-left"></i> {{ 'action.back_to_list'|trans }}
             </a>
         </p>
+        <h3>{{ 'title.item_comments'|trans }}</h3>
+        {% if item.comments is not empty %}
+            <ul class="list-group">
+                {% for comment in item.comments %}
+                    <li class="list-group-item">
+                        <div>
+                            <strong>{{ comment.nickname }}</strong> ({{ comment.email }})<br>
+                            <small>{{ comment.createdAt|format_date('long') }}</small><br>
+                            <p class="mb-1">{{ comment.content }}</p>
+                        </div>
+                        <div class="ms-3 text-end">
+                            <a href="{{ url('comment_delete', {id: comment.id}) }}" class="btn btn-danger btn-sm" title="{{ 'action.delete'|trans }}">
+                                <i class="bi bi-trash"></i> {{ 'action.delete'|trans }}
+                            </a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            {% include 'default/_single_alert_message.html.twig' with {
+                type: 'warning',
+                message: 'message.no_comments_in_item'|trans
+            } %}
+        {% endif %}
     {% else %}
         {% include 'default/_single_alert_message.html.twig' with {
             type: 'warning',
             message: 'message.record_not_found'|trans
         } %}
     {% endif %}
+    <div class="mt-4">
+        <a href="{{ path('comment_create', {id: item.id}) }}" class="btn btn-success" title="{{ 'action.create'|trans }}">
+            <i class="bi bi-plus-circle"></i> {{ 'action.create'|trans }}
+        </a>
+    </div>
 {% endblock %}
