@@ -78,7 +78,7 @@ class Category
      *
      * @var Collection|ArrayCollection
      */
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Item::class)]
+    #[ORM\OneToMany(targetEntity: Item::class, mappedBy: 'category')]
     private Collection $items;
 
     /**

@@ -4,23 +4,23 @@
     <body>
       <trans-unit id="title.catalog">
         <source>title.catalog</source>
-        <target>Online catalogue</target>
+        <target>Katalog Internetowy</target>
       </trans-unit>
       <trans-unit id="menu.items">
         <source>menu.items</source>
-        <target>Items</target>
+        <target>Przedmioty</target>
       </trans-unit>
       <trans-unit id="menu.categories">
         <source>menu.categories</source>
-        <target>Categories</target>
+        <target>Kategorie</target>
       </trans-unit>
       <trans-unit id="menu.comments">
         <source>menu.comments</source>
-        <target>Comments</target>
+        <target>Komentarze</target>
       </trans-unit>
       <trans-unit id="title.item_list">
         <source>title.item_list</source>
-        <target>Items list</target>
+        <target>Lista przedmiotów</target>
       </trans-unit>
       <trans-unit id="label.id">
         <source>label.id</source>
@@ -28,131 +28,131 @@
       </trans-unit>
       <trans-unit id="label.title">
         <source>label.title</source>
-        <target>Title</target>
+        <target>Tytuł</target>
       </trans-unit>
       <trans-unit id="label.description">
         <source>label.description</source>
-        <target>Description</target>
+        <target>Opis</target>
       </trans-unit>
       <trans-unit id="label.created_at">
         <source>label.created_at</source>
-        <target>Created at</target>
+        <target>Utworzono</target>
       </trans-unit>
       <trans-unit id="label.category">
         <source>label.category</source>
-        <target>Category</target>
+        <target>Kategoria</target>
       </trans-unit>
       <trans-unit id="label.actions">
         <source>label.actions</source>
-        <target>Actions</target>
+        <target>Akcje</target>
       </trans-unit>
       <trans-unit id="action.view">
         <source>action.view</source>
-        <target>View</target>
+        <target>Podgląd</target>
       </trans-unit>
       <trans-unit id="action.edit">
         <source>action.edit</source>
-        <target>Edit</target>
+        <target>Edytuj</target>
       </trans-unit>
       <trans-unit id="action.delete">
         <source>action.delete</source>
-        <target>Delete</target>
+        <target>Usuń</target>
       </trans-unit>
       <trans-unit id="action.create">
         <source>action.create</source>
-        <target>Create</target>
+        <target>Utwórz</target>
       </trans-unit>
       <trans-unit id="title.item_details">
         <source>title.item_details</source>
-        <target>Item details</target>
+        <target>Szczegóły przedmiotu</target>
       </trans-unit>
       <trans-unit id="action.back_to_list">
         <source>action.back_to_list</source>
-        <target>Back to list</target>
+        <target>Powrót do listy</target>
       </trans-unit>
       <trans-unit id="title.item_comments">
         <source>title.item_comments</source>
-        <target>Comments</target>
+        <target>Komentarze</target>
       </trans-unit>
       <trans-unit id="message.empty_list">
         <source>message.empty_list</source>
-        <target>List is empty.</target>
+        <target>Lista jest pusta.</target>
       </trans-unit>
       <trans-unit id="message.no_comments_in_item">
         <source>message.no_comments_in_item</source>
-        <target>No comments in item.</target>
+        <target>Brak komentarzy dla przedmiotu.</target>
       </trans-unit>
       <trans-unit id="message.record_not_found">
         <source>message.record_not_found</source>
-        <target>Record not found.</target>
+        <target>Nie znaleziono rekordu.</target>
       </trans-unit>
       <trans-unit id="title.item_edit">
         <source>title.item_edit</source>
-        <target>Editing an item</target>
+        <target>Edycja przedmiotu</target>
       </trans-unit>
       <trans-unit id="title.item_delete">
         <source>title.item_delete</source>
-        <target>Deleting an item</target>
+        <target>Usuwanie przedmiotu</target>
       </trans-unit>
       <trans-unit id="title.item_create">
         <source>title.item_create</source>
-        <target>Creating an item</target>
+        <target>Tworzenie przedmiotu</target>
       </trans-unit>
       <trans-unit id="message.form_error">
         <source>message.form_error</source>
-        <target>Form error.</target>
+        <target>Błąd formularza.</target>
       </trans-unit>
       <trans-unit id="title.category_list">
         <source>title.category_list</source>
-        <target>Category list</target>
+        <target>Lista kategorii</target>
       </trans-unit>
       <trans-unit id="label.updated_at">
         <source>label.updated_at</source>
-        <target>Updated at</target>
+        <target>Zaktualizowano</target>
       </trans-unit>
       <trans-unit id="title.category_details">
         <source>title.category_details</source>
-        <target>Category details</target>
+        <target>Szczegóły kategorii</target>
       </trans-unit>
       <trans-unit id="action.view_category_items">
         <source>action.view_category_items</source>
-        <target>View category items</target>
+        <target>Zobacz przedmioty w kategorii</target>
       </trans-unit>
       <trans-unit id="title.item_list_for_category">
         <source>title.item_list_for_category</source>
-        <target>Items list for category</target>
+        <target>Lista przedmiotów w kategorii</target>
       </trans-unit>
       <trans-unit id="message.no_items_in_category">
         <source>message.no_items_in_category</source>
-        <target>No items in category.</target>
+        <target>Brak przedmiotów w kategorii.</target>
       </trans-unit>
       <trans-unit id="title.category_edit">
         <source>title.category_edit</source>
-        <target>Editing category</target>
+        <target>Edycja kategorii</target>
       </trans-unit>
       <trans-unit id="title.category_delete">
         <source>title.category_delete</source>
-        <target>Deleting category</target>
+        <target>Usuwanie kategorii</target>
       </trans-unit>
       <trans-unit id="title.category_create">
         <source>title.category_create</source>
-        <target>Creating category</target>
+        <target>Tworzenie kategorii</target>
       </trans-unit>
       <trans-unit id="message.created_successfully">
         <source>message.created_successfully</source>
-        <target>Created successfully</target>
+        <target>Utworzono pomyślnie</target>
       </trans-unit>
       <trans-unit id="message.edited_successfully">
         <source>message.edited_successfully</source>
-        <target>Edited successfully</target>
+        <target>Edytowano pomyślnie</target>
       </trans-unit>
       <trans-unit id="message.deleted_successfully">
         <source>message.deleted_successfully</source>
-        <target>Deleted successfully</target>
+        <target>Usunięto pomyślnie</target>
       </trans-unit>
       <trans-unit id="title.comment_list">
         <source>title.comment_list</source>
-        <target>Comments list</target>
+        <target>Lista komentarzy</target>
       </trans-unit>
       <trans-unit id="label.email">
         <source>label.email</source>
@@ -160,35 +160,35 @@
       </trans-unit>
       <trans-unit id="label.nickname">
         <source>label.nickname</source>
-        <target>Nickname</target>
+        <target>Pseudonim</target>
       </trans-unit>
       <trans-unit id="label.content">
         <source>label.content</source>
-        <target>Content</target>
+        <target>Treść</target>
       </trans-unit>
       <trans-unit id="label.item">
         <source>label.item</source>
-        <target>Item</target>
+        <target>Przedmiot</target>
       </trans-unit>
       <trans-unit id="title.comment_delete">
         <source>title.comment_delete</source>
-        <target>Deleting comment</target>
+        <target>Usuwanie komentarza</target>
       </trans-unit>
       <trans-unit id="title.comment_create">
         <source>title.comment_create</source>
-        <target>Creating comment</target>
+        <target>Tworzenie komentarza</target>
       </trans-unit>
       <trans-unit id="action.save">
         <source>action.save</source>
-        <target>Save</target>
+        <target>Zapisz</target>
       </trans-unit>
       <trans-unit id="label.none">
         <source>label.none</source>
-        <target>None</target>
+        <target>Brak</target>
       </trans-unit>
       <trans-unit id="message.category_contains_items">
         <source>message.category_contains_items</source>
-        <target>Category contains items</target>
+        <target>Kategoria zawiera przedmioty</target>
       </trans-unit>
     </body>
   </file>
