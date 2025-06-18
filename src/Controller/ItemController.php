@@ -9,12 +9,14 @@ namespace App\Controller;
 use App\Entity\Item;
 use App\Form\Type\ItemType;
 use App\Service\ItemServiceInterface;
+use App\Security\Voter\ItemVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -84,6 +86,7 @@ class ItemController extends AbstractController
         name: 'item_create',
         methods: 'GET|POST',
     )]
+    #[IsGranted(ItemVoter::CREATE)]
     public function create(Request $request): Response
     {
         $item = new Item();
@@ -121,6 +124,7 @@ class ItemController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|PUT'
     )]
+    #[IsGranted(ItemVoter::EDIT, subject: 'item')]
     public function edit(Request $request, Item $item): Response
     {
         $form = $this->createForm(
@@ -167,6 +171,7 @@ class ItemController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|DELETE'
     )]
+    #[IsGranted(ItemVoter::DELETE, subject: 'item')]
     public function delete(Request $request, Item $item): Response
     {
         $form = $this->createForm(FormType::class, $item, [

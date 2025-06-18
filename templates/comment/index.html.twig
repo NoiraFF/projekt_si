@@ -21,7 +21,9 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.content'|trans, 'comment.content') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'comment.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.item'|trans, 'comment.item.title') }}</th>
-                <th>{{ 'label.actions'|trans }}</th>
+                {% if is_granted('COMMENT_DELETE') %}
+                    <th>{{ 'label.actions'|trans }}</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -34,9 +36,11 @@
                     <td>{{ comment.createdAt|format_date('long') }}</td>
                     <td>{{ comment.item.title }}</td>
                     <td>
-                        <a href="{{ url('comment_delete', {id: comment.id}) }}" class="btn btn-danger btn-sm" title="{{ 'action.delete'|trans }}">
-                            <i class="bi bi-trash"></i> {{ 'action.delete'|trans }}
-                        </a>
+                        {% if is_granted('COMMENT_DELETE', comment) %}
+                            <a href="{{ url('comment_delete', {id: comment.id}) }}" class="btn btn-danger btn-sm" title="{{ 'action.delete'|trans }}">
+                                <i class="bi bi-trash"></i> {{ 'action.delete'|trans }}
+                            </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

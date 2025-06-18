@@ -31,12 +31,16 @@
                         <a href="{{ path('item_view', {id: item.id}) }}" class="btn btn-primary btn-sm" title="{{ 'action.view'|trans }}">
                             <i class="bi bi-eye"></i> {{ 'action.view'|trans }}
                         </a>
-                        <a href="{{ path('item_edit', {id: item.id}) }}" class="btn btn-warning btn-sm" title="{{ 'action.edit'|trans }}">
-                            <i class="bi bi-pencil"></i> {{ 'action.edit'|trans }}
-                        </a>
-                        <a href="{{ path('item_delete', {id: item.id}) }}" class="btn btn-danger btn-sm" title="{{ 'action.delete'|trans }}">
-                            <i class="bi bi-trash"></i> {{ 'action.delete'|trans }}
-                        </a>
+                        {% if is_granted('ITEM_EDIT', item) %}
+                            <a href="{{ path('item_edit', {id: item.id}) }}" class="btn btn-warning btn-sm" title="{{ 'action.edit'|trans }}">
+                                <i class="bi bi-pencil"></i> {{ 'action.edit'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('ITEM_DELETE', item) %}
+                            <a href="{{ path('item_delete', {id: item.id}) }}" class="btn btn-danger btn-sm" title="{{ 'action.delete'|trans }}">
+                                <i class="bi bi-trash"></i> {{ 'action.delete'|trans }}
+                            </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

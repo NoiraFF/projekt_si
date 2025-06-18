@@ -33,12 +33,16 @@
                         <a href="{{ url('category_view', {id: category.id}) }}" class="btn btn-primary btn-sm" title="{{ 'action.view'|trans }}">
                             <i class="bi bi-eye"></i> {{ 'action.view'|trans }}
                         </a>
-                        <a href="{{ url('category_edit', {id: category.id}) }}" class="btn btn-warning btn-sm" title="{{ 'action.edit'|trans }}">
-                            <i class="bi bi-pencil"></i> {{ 'action.edit'|trans }}
-                        </a>
-                        <a href="{{ url('category_delete', {id: category.id}) }}" class="btn btn-danger btn-sm" title="{{ 'action.delete'|trans }}">
-                            <i class="bi bi-trash"></i> {{ 'action.delete'|trans }}
-                        </a>
+                        {% if is_granted('CATEGORY_EDIT', category) %}
+                            <a href="{{ url('category_edit', {id: category.id}) }}" class="btn btn-warning btn-sm" title="{{ 'action.edit'|trans }}">
+                                <i class="bi bi-pencil"></i> {{ 'action.edit'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('CATEGORY_DELETE', category) %}
+                            <a href="{{ url('category_delete', {id: category.id}) }}" class="btn btn-danger btn-sm" title="{{ 'action.delete'|trans }}">
+                                <i class="bi bi-trash"></i> {{ 'action.delete'|trans }}
+                            </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}
@@ -47,11 +51,13 @@
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
         </div>
+    {% if is_granted('CATEGORY_CREATE') %}
         <div class="text-end mb-3">
             <a href="{{ path('category_create') }}" class="btn btn-primary" title="{{ 'action.create'|trans }}">
                 <i class="bi bi-plus-circle"></i> {{ 'action.create'|trans }}
             </a>
         </div>
+    {% endif %}
     {% else %}
         {% include 'default/_single_alert_message.html.twig' with {
             type: 'warning',

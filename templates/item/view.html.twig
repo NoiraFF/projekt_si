@@ -34,11 +34,13 @@
                             <small>{{ comment.createdAt|format_date('long') }}</small><br>
                             <p class="mb-1">{{ comment.content }}</p>
                         </div>
-                        <div class="ms-3 text-end">
-                            <a href="{{ url('comment_delete', {id: comment.id}) }}" class="btn btn-danger btn-sm" title="{{ 'action.delete'|trans }}">
-                                <i class="bi bi-trash"></i> {{ 'action.delete'|trans }}
-                            </a>
-                        </div>
+                        {% if is_granted('COMMENT_DELETE', comment) %}
+                            <div class="ms-3 text-end">
+                                <a href="{{ url('comment_delete', {id: comment.id}) }}" class="btn btn-danger btn-sm" title="{{ 'action.delete'|trans }}">
+                                    <i class="bi bi-trash"></i> {{ 'action.delete'|trans }}
+                                </a>
+                            </div>
+                        {% endif %}
                     </li>
                 {% endfor %}
             </ul>
