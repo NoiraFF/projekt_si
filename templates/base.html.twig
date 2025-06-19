@@ -34,8 +34,13 @@
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <div class="container-fluid">
             <p class="text-end mb-2">{{ app.user.email }}</p>
-            <div class="text-end mb-3">
-                <a href="{{ url('app_logout') }}" class="btn btn-primary">{{ 'action.logout'|trans }}</a>
+            <div>
+                <div class="text-end mb-3">
+                    <a href="{{ url('app_logout') }}" class="btn btn-primary">{{ 'action.logout'|trans }}</a>
+                </div>
+                <div class="text-end mb-3">
+                    <a href="{{ url('admin_edit') }}" class="btn btn-primary">{{ 'action.profile_edit'|trans }}</a>
+                </div>
             </div>
             {% else %}
                 <div class="text-end mb-3">

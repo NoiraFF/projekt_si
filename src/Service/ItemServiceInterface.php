@@ -25,7 +25,7 @@ interface ItemServiceInterface
     /**
      * Save entity.
      *
-     * @parm Item $item Item entity
+     * @param Item $item Item entity
      */
     public function save(Item $item): void;
 

@@ -57,7 +57,7 @@ final class CategoryVoter extends Voter
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
         return in_array($attribute, [self::EDIT, self::DELETE, self::VIEW, self::CREATE])
-            && $subject instanceof Category;
+            && ($subject instanceof Category || self::CREATE === $attribute);
     }
 
     /**

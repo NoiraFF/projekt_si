@@ -57,7 +57,7 @@ final class ItemVoter extends Voter
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
         return in_array($attribute, [self::EDIT, self::DELETE, self::VIEW, self::CREATE])
-            && $subject instanceof Item;
+            && ($subject instanceof Item || self::CREATE === $attribute);
     }
 
     /**
