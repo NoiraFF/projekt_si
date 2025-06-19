@@ -210,6 +210,22 @@
         <source>title.sign_in</source>
         <target>Sign in</target>
       </trans-unit>
+      <trans-unit id="message.access_denied">
+        <source>message.access_denied</source>
+        <target>Access denied.</target>
+      </trans-unit>
+      <trans-unit id="action.profile_edit">
+        <source>action.profile_edit</source>
+        <target>Edit profile</target>
+      </trans-unit>
+      <trans-unit id="title.admin_edit">
+        <source>title.admin_edit</source>
+        <target>Admin edit</target>
+      </trans-unit>
+      <trans-unit id="label.new_password">
+        <source>label.new_password</source>
+        <target>New password</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

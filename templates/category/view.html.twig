@@ -5,17 +5,17 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.category_details'|trans({'%id%': category.id|default('')}) }}</h1>
+    <h1 class="mb-4">{{ 'title.category_details'|trans({'%id%': category.id|default('')}) }}</h1>
     {% if category is defined and category|length %}
-        <dl class="dl-horizontal">
-            <dt>{{ 'label.id'|trans }}</dt>
-            <dd>{{ category.id }}</dd>
-            <dt>{{ 'label.title'|trans }}</dt>
-            <dd>{{  category.title }}</dd>
-            <dt>{{ 'label.created_at'|trans }}</dt>
-            <dd>{{ category.createdAt|format_date('long') }}</dd>
-            <dt>{{ 'label.updated_at'|trans }}</dt>
-            <dd>{{ category.updatedAt|format_date('long') }}</dd>
+        <dl class="row mb-4">
+            <dt class="col-sm-3">{{ 'label.id'|trans }}</dt>
+            <dd class="col-sm-9">{{ category.id }}</dd>
+            <dt class="col-sm-3">{{ 'label.title'|trans }}</dt>
+            <dd class="col-sm-9">{{  category.title }}</dd>
+            <dt class="col-sm-3">{{ 'label.created_at'|trans }}</dt>
+            <dd class="col-sm-9">{{ category.createdAt|format_date('long') }}</dd>
+            <dt class="col-sm-3">{{ 'label.updated_at'|trans }}</dt>
+            <dd class="col-sm-9">{{ category.updatedAt|format_date('long') }}</dd>
         </dl>
         <p>
             <a href="{{ url('category_items', {'id': category.id}) }}" class="btn btn-info btn-sm" title="{{ 'action.view_category_items'|trans }}">
@@ -23,7 +23,7 @@
             </a>
         </p>
         <p>
-            <a href="{{ url('category_index') }}" class="btn btn-light" title="{{ 'action.back_to_list'|trans }}">
+            <a href="{{ url('category_index') }}" class="btn btn-outline-secondary" title="{{ 'action.back_to_list'|trans }}">
                 <i class="bi bi-arrow-left"></i> {{ 'action.back_to_list'|trans }}
             </a>
         </p>

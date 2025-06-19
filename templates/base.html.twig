@@ -15,39 +15,35 @@
     {% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container-fluid">
-        <p class="navbar-brand">{{ 'title.catalog'|trans }}</p>
+        <span class="navbar-brand text-light">{{ 'title.catalog'|trans }}</span>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('item_index') }}">{{ 'menu.items'|trans }}</a>
+                    <a class="nav-link text-light" href="{{ path('item_index') }}">{{ 'menu.items'|trans }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('category_index') }}">{{ 'menu.categories'|trans }}</a>
+                    <a class="nav-link text-light" href="{{ path('category_index') }}">{{ 'menu.categories'|trans }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('comment_index') }}">{{ 'menu.comments'|trans }}</a>
+                    <a class="nav-link text-light" href="{{ path('comment_index') }}">{{ 'menu.comments'|trans }}</a>
                 </li>
             </ul>
         </div>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <div class="container-fluid">
-            <p class="text-end mb-2">{{ app.user.email }}</p>
-            <div>
-                <div class="text-end mb-3">
-                    <a href="{{ url('app_logout') }}" class="btn btn-primary">{{ 'action.logout'|trans }}</a>
-                </div>
-                <div class="text-end mb-3">
-                    <a href="{{ url('admin_edit') }}" class="btn btn-primary">{{ 'action.profile_edit'|trans }}</a>
+            <div class="d-flex flex-column align-items-end">
+                <span class="text-light small mb-2">{{ app.user.email }}</span>
+                <div class="d-flex gap-2">
+                    <a href="{{ path('admin_edit') }}" class="btn btn-outline-light btn-sm">{{ 'action.profile_edit'|trans }}</a>
+                    <a href="{{ path('app_logout') }}" class="btn btn-outline-light btn-sm">{{ 'action.logout'|trans }}</a>
                 </div>
             </div>
-            {% else %}
-                <div class="text-end mb-3">
-                    <a href="{{ url('app_login') }}" class="btn btn-primary">{{ 'action.login'|trans }}</a>
-                </div>
-            {% endif %}
-        </div>
+        {% else %}
+            <div class="text-end">
+                <a href="{{ path('app_login') }}" class="btn btn-outline-light">{{ 'action.login'|trans }}</a>
+            </div>
+        {% endif %}
     </div>
 </nav>
 <main role="main" class="container-fluid">

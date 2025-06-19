@@ -210,6 +210,22 @@
         <source>title.sign_in</source>
         <target>Potwierdź</target>
       </trans-unit>
+      <trans-unit id="message.access_denied">
+        <source>message.access_denied</source>
+        <target>Dostęp zabroniony.</target>
+      </trans-unit>
+      <trans-unit id="action.profile_edit">
+        <source>action.profile_edit</source>
+        <target>Edytuj profil</target>
+      </trans-unit>
+      <trans-unit id="title.admin_edit">
+        <source>title.admin_edit</source>
+        <target>Edycja profilu</target>
+      </trans-unit>
+      <trans-unit id="label.new_password">
+        <source>label.new_password</source>
+        <target>Nowe hasło</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

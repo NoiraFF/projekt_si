@@ -5,38 +5,31 @@
 {% endblock %}
 
 {% block body %}
-    <form method="post" action="{{ path('app_login') }}">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+        <form method="post" action="{{ path('app_login') }}" class="p-4 border rounded shadow-sm" style="min-width: 320px; max-width: 400px; width: 100%;">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
-        {#
-        {% if app.user %}
+            <h1 class="h4 mb-4 text-center">{{ 'title.login'|trans }}</h1>
+
             <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                <label for="username" class="form-label">{{ 'label.email'|trans }}</label>
+                <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
             </div>
-        {% endif %}
-        #}
 
-        <h1 class="h3 mb-3 font-weight-normal">{{ 'title.login'|trans }}</h1>
-        <label for="username">{{ 'label.email'|trans }}</label>
-        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-        <label for="password">{{ 'label.password'|trans }}</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
-
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
-
-            <div class="checkbox mb-3">
-                <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
+            <div class="mb-3">
+                <label for="password" class="form-label">{{ 'label.password'|trans }}</label>
+                <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
             </div>
-        #}
 
-        <button class="btn btn-lg btn-primary" type="submit">
-            {{ 'title.sign_in'|trans }}
-        </button>
-    </form>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <div class="d-grid">
+                <button class="btn btn-dark" type="submit">
+                    {{ 'title.sign_in'|trans }}
+                </button>
+            </div>
+        </form>
+    </div>
 {% endblock %}
