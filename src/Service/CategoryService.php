@@ -95,7 +95,7 @@ class CategoryService implements CategoryServiceInterface
     }
 
     /**
-     * Delete entity
+     * Delete entity.
      *
      * @param Category $category Category entity
      */
@@ -116,7 +116,7 @@ class CategoryService implements CategoryServiceInterface
         try {
             $result = $this->itemRepository->countByCategory($category);
 
-            return !($result > 0);
+            return $result <= 0;
         } catch (NoResultException|NonUniqueResultException) {
             return false;
         }

@@ -33,6 +33,7 @@ class ItemController extends AbstractController
     public function __construct(private readonly ItemServiceInterface $itemService, private readonly TranslatorInterface $translator)
     {
     }
+
     /**
      * Index action.
      *
@@ -51,6 +52,7 @@ class ItemController extends AbstractController
 
         return $this->render('item/index.html.twig', ['pagination' => $pagination]);
     }
+
     /**
      * View action.
      *
@@ -71,6 +73,7 @@ class ItemController extends AbstractController
             ['item' => $item]
         );
     }
+
     /**
      * Create action.
      *
@@ -106,6 +109,7 @@ class ItemController extends AbstractController
             ['form' => $form->createView()]
         );
     }
+
     /**
      * Edit action.
      *
@@ -152,6 +156,7 @@ class ItemController extends AbstractController
             ]
         );
     }
+
     /**
      * Delete action.
      *

@@ -53,8 +53,6 @@ class Category
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Assert\Type('string')]
@@ -64,17 +62,15 @@ class Category
 
     /**
      * Slug.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Assert\Type('string')]
     #[Assert\Length(min: 3, max: 64)]
     #[Gedmo\Slug(fields: ['title'])]
-    private ?string $slug;
+    private ?string $slug = null;
 
     /**
-     * Items
+     * Items.
      *
      * @var Collection|ArrayCollection
      */
@@ -114,7 +110,9 @@ class Category
     /**
      * Setter for created at.
      *
-     * @param \DateTimeImmutable|null $createdAt Created at
+     * @param \DateTimeImmutable $createdAt Created at
+     *
+     * @return $this
      */
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
@@ -136,7 +134,9 @@ class Category
     /**
      * Setter for updated at.
      *
-     * @param \DateTimeImmutable|null $updatedAt Updated at
+     * @param \DateTimeImmutable $updatedAt Updated at
+     *
+     * @return $this
      */
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
@@ -158,7 +158,9 @@ class Category
     /**
      * Setter for title.
      *
-     * @param string|null $title Title
+     * @param string $title Title
+     *
+     * @return $this
      */
     public function setTitle(string $title): static
     {
@@ -180,7 +182,9 @@ class Category
     /**
      * Setter for slug.
      *
-     * @param string|null $title Slug
+     * @param string $slug Slug
+     *
+     * @return $this
      */
     public function setSlug(string $slug): static
     {
@@ -203,6 +207,8 @@ class Category
      * Add item to the collection.
      *
      * @param Item $item Item entity
+     *
+     * @return $this
      */
     public function addItem(Item $item): static
     {
@@ -218,13 +224,13 @@ class Category
      * Remove item from the collection.
      *
      * @param Item $item Item entity
+     *
+     * @return $this
      */
     public function removeItem(Item $item): static
     {
-        if ($this->items->removeElement($item)) {
-            if ($item->getCategory() === $this) {
-                $item->setCategory(null);
-            }
+        if ($this->items->removeElement($item) && $item->getCategory() === $this) {
+            $item->setCategory(null);
         }
 
         return $this;

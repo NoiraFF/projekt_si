@@ -31,8 +31,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Email.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\NotBlank]
@@ -81,6 +79,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Setter for email.
      *
      * @param string $email Email
+     *
+     * @return $this
      */
     public function setEmail(string $email): static
     {
@@ -121,6 +121,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Setter for roles.
      *
      * @param list<int, string> $roles Roles
+     *
+     * @return $this
      */
     public function setRoles(array $roles): static
     {
@@ -145,6 +147,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Setter for password.
      *
      * @param string $password User password
+     *
+     * @return $this
      */
     public function setPassword(string $password): static
     {

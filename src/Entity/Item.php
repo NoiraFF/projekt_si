@@ -3,6 +3,7 @@
 /**
  * Item entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\ItemRepository;
@@ -29,8 +30,6 @@ class Item
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -40,8 +39,6 @@ class Item
 
     /**
      * Description.
-     *
-     * @var text|null
      */
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank]
@@ -51,7 +48,7 @@ class Item
     /**
      * Created At.
      *
-     * @var \DateTimeImmutable|null
+     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(\DateTimeImmutable::class)]
@@ -60,8 +57,6 @@ class Item
 
     /**
      * Category.
-     *
-     * @var Category|null
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY', inversedBy: 'items')]
     #[ORM\JoinColumn(nullable: false)]
@@ -71,8 +66,6 @@ class Item
 
     /**
      * Slug.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -121,7 +114,9 @@ class Item
     /**
      * Setter for title.
      *
-     * @param string|null $title Title
+     * @param string $title Title
+     *
+     * @return $this
      */
     public function setTitle(string $title): static
     {
@@ -143,7 +138,9 @@ class Item
     /**
      * Setter for description.
      *
-     * @param string|null $title Description
+     * @param string $description Description
+     *
+     * @return $this
      */
     public function setDescription(string $description): static
     {
@@ -165,7 +162,9 @@ class Item
     /**
      * Setter for created at.
      *
-     * @param \DateTimeImmutable|null $createdAt Created at
+     * @param \DateTimeImmutable $createdAt Created at
+     *
+     * @return $this
      */
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
@@ -188,6 +187,8 @@ class Item
      * Setter for category.
      *
      * @param Category|null $category Category
+     *
+     * @return $this
      */
     public function setCategory(?Category $category): static
     {
@@ -209,7 +210,9 @@ class Item
     /**
      * Setter for slug.
      *
-     * @param string|null $title Slug
+     * @param string $slug Slug
+     *
+     * @return $this
      */
     public function setSlug(string $slug): static
     {
@@ -232,6 +235,8 @@ class Item
      * Add comment to the collection.
      *
      * @param Comment $comment Comment entity
+     *
+     * @return $this
      */
     public function addComment(Comment $comment): static
     {
@@ -246,15 +251,15 @@ class Item
     /**
      * Remove comment from the collection.
      *
-     * @param Comment $comment Comment entity.
+     * @param Comment $comment comment entity
+     *
+     * @return $this
      */
     public function removeComment(Comment $comment): static
     {
-        if ($this->comments->removeElement($comment)) {
-            // set the owning side to null (unless already changed)
-            if ($comment->getItem() === $this) {
-                $comment->setItem(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->comments->removeElement($comment) && $comment->getItem() === $this) {
+            $comment->setItem(null);
         }
 
         return $this;

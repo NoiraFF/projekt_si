@@ -34,6 +34,7 @@ class CommentController extends AbstractController
     public function __construct(private readonly CommentServiceInterface $commentService, private readonly TranslatorInterface $translator)
     {
     }
+
     /**
      * Index action.
      *
@@ -52,6 +53,7 @@ class CommentController extends AbstractController
 
         return $this->render('comment/index.html.twig', ['pagination' => $pagination]);
     }
+
     /**
      * Create action.
      *
@@ -88,6 +90,7 @@ class CommentController extends AbstractController
             ['form' => $form->createView()]
         );
     }
+
     /**
      * Delete action.
      *

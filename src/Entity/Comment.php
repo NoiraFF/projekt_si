@@ -3,10 +3,10 @@
 /**
  * Comment entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -28,8 +28,6 @@ class Comment
 
     /**
      * Email.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -39,8 +37,6 @@ class Comment
 
     /**
      * Nickname.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Assert\Type('string')]
@@ -50,8 +46,6 @@ class Comment
 
     /**
      * Description.
-     *
-     * @var text|null
      */
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank]
@@ -61,7 +55,7 @@ class Comment
     /**
      * Created At.
      *
-     * @var \DateTimeImmutable|null
+     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(\DateTimeImmutable::class)]
@@ -103,6 +97,8 @@ class Comment
      * Setter for Email.
      *
      * @param string $email Email
+     *
+     * @return $this
      */
     public function setEmail(string $email): static
     {
@@ -125,6 +121,8 @@ class Comment
      * Setter for Nickname.
      *
      * @param string $nickname Nickname
+     *
+     * @return $this
      */
     public function setNickname(string $nickname): static
     {
@@ -147,6 +145,8 @@ class Comment
      * Setter for Content.
      *
      * @param string $content Content
+     *
+     * @return $this
      */
     public function setContent(string $content): static
     {
@@ -169,6 +169,8 @@ class Comment
      * Setter for Created at.
      *
      * @param \DateTimeImmutable $createdAt Created at
+     *
+     * @return $this
      */
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
@@ -191,6 +193,8 @@ class Comment
      * Setter for Item.
      *
      * @param Item|null $item Item
+     *
+     * @return $this
      */
     public function setItem(?Item $item): static
     {

@@ -32,6 +32,7 @@ class UserController extends AbstractController
     public function __construct(private readonly UserRepository $userRepository, private readonly UserPasswordHasherInterface $passwordHasher, private readonly TranslatorInterface $translator)
     {
     }
+
     /**
      * Edit action.
      *
