@@ -20,19 +20,18 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 /**
  * Class UserController.
  */
-#[Route('/admin')]
 class UserController extends AbstractController
 {
-
     /**
      * Constructor.
      *
-     * @param TranslatorInterface $translator Translator
+     * @param UserRepository              $userRepository User repository
+     * @param UserPasswordHasherInterface $passwordHasher Password hasher
+     * @param TranslatorInterface         $translator     Translator
      */
     public function __construct(private readonly UserRepository $userRepository, private readonly UserPasswordHasherInterface $passwordHasher, private readonly TranslatorInterface $translator)
     {
     }
-
     /**
      * Edit action.
      *
@@ -41,7 +40,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/edit',
+        '/admin/edit',
         name: 'admin_edit',
         methods: 'GET|PUT'
     )]

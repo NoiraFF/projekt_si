@@ -22,19 +22,17 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * Class ItemController.
  */
-#[Route('/item')]
 class ItemController extends AbstractController
 {
     /**
      * Constructor.
      *
-     * @parm ItemServiceInterface $itemService Item service
-     * @parm TranslatorInterface  $translator  Translator
+     * @param ItemServiceInterface $itemService Item service
+     * @param TranslatorInterface  $translator  Translator
      */
     public function __construct(private readonly ItemServiceInterface $itemService, private readonly TranslatorInterface $translator)
     {
     }
-
     /**
      * Index action.
      *
@@ -43,6 +41,7 @@ class ItemController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
+        '/item',
         name: 'item_index',
         methods: 'GET'
     )]
@@ -52,7 +51,6 @@ class ItemController extends AbstractController
 
         return $this->render('item/index.html.twig', ['pagination' => $pagination]);
     }
-
     /**
      * View action.
      *
@@ -61,7 +59,7 @@ class ItemController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}',
+        '/item/{id}',
         name: 'item_view',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
@@ -73,7 +71,6 @@ class ItemController extends AbstractController
             ['item' => $item]
         );
     }
-
     /**
      * Create action.
      *
@@ -82,7 +79,7 @@ class ItemController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/create',
+        '/item/create',
         name: 'item_create',
         methods: 'GET|POST',
     )]
@@ -109,7 +106,6 @@ class ItemController extends AbstractController
             ['form' => $form->createView()]
         );
     }
-
     /**
      * Edit action.
      *
@@ -119,7 +115,7 @@ class ItemController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/edit',
+        '/item/{id}/edit',
         name: 'item_edit',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|PUT'
@@ -156,7 +152,6 @@ class ItemController extends AbstractController
             ]
         );
     }
-
     /**
      * Delete action.
      *
@@ -166,7 +161,7 @@ class ItemController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/delete',
+        '/item/{id}/delete',
         name: 'item_delete',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|DELETE'

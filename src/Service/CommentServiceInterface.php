@@ -18,7 +18,7 @@ interface CommentServiceInterface
     /**
      * Get paginated list for item.
      *
-     * @param int $page Page number
+     * @param int  $page Page number
      * @param Item $item Item entity
      *
      * @return PaginationInterface<string, mixed> Paginated list

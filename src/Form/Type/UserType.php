@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class UserType.
@@ -47,6 +48,13 @@ class UserType extends AbstractType
                 'label' => 'label.new_password',
                 'required' => false,
                 'mapped' => false,
+                'constraints' => [
+                    new Assert\Length([
+                        'min' => 6,
+                        'max' => 64,
+                    ]),
+                    new Assert\NotBlank(),
+                ],
             ]
         );
     }

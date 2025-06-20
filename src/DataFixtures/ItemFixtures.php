@@ -9,7 +9,6 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use App\Entity\Item;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
 

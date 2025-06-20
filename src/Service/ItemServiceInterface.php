@@ -35,5 +35,4 @@ interface ItemServiceInterface
      * @param Item $item Item entity
      */
     public function delete(Item $item): void;
-
 }

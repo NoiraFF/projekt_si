@@ -23,19 +23,17 @@ use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 /**
  * Class CommentController.
  */
-#[Route('/comment')]
 class CommentController extends AbstractController
 {
     /**
      * Constructor.
      *
-     * @parm CommentServiceInterface $commentService Comment service
-     * @parm TranslatorInterface     $translator     Translator
+     * @param CommentServiceInterface $commentService Comment service
+     * @param TranslatorInterface     $translator     Translator
      */
     public function __construct(private readonly CommentServiceInterface $commentService, private readonly TranslatorInterface $translator)
     {
     }
-
     /**
      * Index action.
      *
@@ -44,6 +42,7 @@ class CommentController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
+        '/comment',
         name: 'comment_index',
         methods: 'GET'
     )]
@@ -53,16 +52,16 @@ class CommentController extends AbstractController
 
         return $this->render('comment/index.html.twig', ['pagination' => $pagination]);
     }
-
     /**
      * Create action.
      *
      * @param Request $request HTTP request
+     * @param Item    $item    Item entity
      *
      * @return Response HTTP response
      */
     #[Route(
-        '/item/{id}/create',
+        '/comment/item/{id}/create',
         name: 'comment_create',
         methods: 'GET|POST',
     )]
@@ -89,7 +88,6 @@ class CommentController extends AbstractController
             ['form' => $form->createView()]
         );
     }
-
     /**
      * Delete action.
      *
@@ -99,7 +97,7 @@ class CommentController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/delete',
+        '/comment/{id}/delete',
         name: 'comment_delete',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|DELETE'

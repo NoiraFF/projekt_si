@@ -22,10 +22,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * Class CategoryController.
  */
-#[Route('/category')]
 class CategoryController extends AbstractController
 {
-
     /**
      * Constructor.
      *
@@ -35,7 +33,6 @@ class CategoryController extends AbstractController
     public function __construct(private readonly CategoryServiceInterface $categoryService, private readonly TranslatorInterface $translator)
     {
     }
-
     /**
      * Index action.
      *
@@ -44,6 +41,7 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
+        '/category',
         name: 'category_index',
         methods: 'GET'
     )]
@@ -53,7 +51,6 @@ class CategoryController extends AbstractController
 
         return $this->render('category/index.html.twig', ['pagination' => $pagination]);
     }
-
     /**
      * View action.
      *
@@ -62,7 +59,7 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}',
+        '/category/{id}',
         name: 'category_view',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
@@ -74,7 +71,6 @@ class CategoryController extends AbstractController
             ['category' => $category]
         );
     }
-
     /**
      * Create action.
      *
@@ -83,7 +79,7 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/create',
+        '/category/create',
         name: 'category_create',
         methods: 'GET|POST'
     )]
@@ -110,7 +106,6 @@ class CategoryController extends AbstractController
             ['form' => $form->createView()]
         );
     }
-
     /**
      * Edit action.
      *
@@ -120,7 +115,7 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/edit',
+        '/category/{id}/edit',
         name: 'category_edit',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|PUT'
@@ -157,7 +152,6 @@ class CategoryController extends AbstractController
             ]
         );
     }
-
     /**
      * Delete action.
      *
@@ -167,7 +161,7 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/delete',
+        '/category/{id}/delete',
         name: 'category_delete',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|DELETE'
@@ -209,7 +203,6 @@ class CategoryController extends AbstractController
             ]
         );
     }
-
     /**
      * View items action.
      *
@@ -219,7 +212,7 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/items',
+        '/category/{id}/items',
         name: 'category_items',
         requirements: ['id' => '[1-9]\d*'],
         methods: ['GET']
