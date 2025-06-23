@@ -31,7 +31,7 @@ class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureIn
         if (!$this->manager instanceof ObjectManager || !$this->faker instanceof Generator) {
             return;
         }
-        $this->createMany(15, 'comments', function (int $i) {
+        $this->createMany(30, 'comments', function (int $i) {
             $comment = new Comment();
             $comment->setEmail($this->faker->email);
             $comment->setNickname($this->faker->name);

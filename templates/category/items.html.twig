@@ -13,7 +13,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'item.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'item.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'item.description') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'item.createdAt') }}</th>
@@ -23,7 +22,6 @@
             <tbody>
             {% for item in pagination.items %}
                 <tr>
-                    <td>{{ item.id }}</td>
                     <td>{{ item.title }}</td>
                     <td>{{ item.description }}</td>
                     <td>{{ item.createdAt|format_date('long') }}</td>

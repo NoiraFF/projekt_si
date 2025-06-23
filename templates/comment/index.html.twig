@@ -15,7 +15,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'comment.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.email'|trans, 'comment.email') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.nickname'|trans, 'comment.nickname') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.content'|trans, 'comment.content') }}</th>
@@ -29,7 +28,6 @@
             <tbody>
             {% for comment in pagination.items %}
                 <tr>
-                    <td>{{ comment.id }}</td>
                     <td>{{ comment.email }}</td>
                     <td>{{ comment.nickname }}</td>
                     <td>{{ comment.content }}</td>

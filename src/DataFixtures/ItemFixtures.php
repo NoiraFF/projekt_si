@@ -31,7 +31,7 @@ class ItemFixtures extends AbstractBaseFixtures implements DependentFixtureInter
         if (!$this->manager instanceof ObjectManager || !$this->faker instanceof Generator) {
             return;
         }
-        $this->createMany(25, 'items', function (int $i) {
+        $this->createMany(40, 'items', function (int $i) {
             $item = new Item();
             $item->setTitle($this->faker->sentence);
             $item->setDescription($this->faker->text);
