@@ -11,5 +11,7 @@ Instalacja projektu: Katalog internetowy
    composer install
 
 5. ładujemy migracje bazodanowe i zapełniamy bazę danych losowymi danymi:
-   php bin/console doctrine:migrations:migrate
+   php bin/console doctrine:migrations:migrate,
    php bin/console doctrine:fixtures:load
+
+6. Aplikacja dostępna jest pod adresem: http://localhost:8000
